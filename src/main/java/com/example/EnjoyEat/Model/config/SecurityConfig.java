@@ -12,10 +12,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/","/auth/**").authenticated() // 인증필요
-                .anyRequest().permitAll()
+                .anyRequest().permitAll() // 위의 요청이 아닌 모든 요청은 허용
                 .and()
                 .formLogin()
                 .loginProcessingUrl("auth/signin")
-                .defaultSuccessUrl("/"); // 위의 요청이 아닌 모든 요청은 허용
+                .defaultSuccessUrl("/");
     }
 }
