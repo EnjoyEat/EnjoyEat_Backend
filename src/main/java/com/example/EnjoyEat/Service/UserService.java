@@ -67,6 +67,7 @@ public class UserService {
 
         return UserDTO
                 .builder()
+                .userId(user.getUserId())
                 .providerId(user.getProviderId())
                 .username(user.getUsername())
                 .email(user.getEmail())

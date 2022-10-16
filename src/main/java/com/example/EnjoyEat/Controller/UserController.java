@@ -28,8 +28,7 @@ public class UserController {
     @GetMapping("/user")
     public ResponseEntity<?> findall() {
         try {
-            userService.findAll();
-            return ResponseEntity.ok("유저목록입니다.");
+            return ResponseEntity.ok(userService.findAll());
         } catch (Exception e) {
             return ResponseService.makeResponseEntity("유저목록을 추출하는데 실패하였습니다.", e);
         }
