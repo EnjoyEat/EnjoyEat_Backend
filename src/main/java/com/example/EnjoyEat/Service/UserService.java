@@ -26,6 +26,15 @@ public class UserService {
         return makeUserDTO(user);
     }
 
+    public List<UserDTO> findAll() {
+        List<User> userList = userRepository.findAll();
+        List<UserDTO> userDTOList = new ArrayList<>();
+        for (User user : userList) {
+            userDTOList.add(makeUserDTO(user));
+        }
+        return userDTOList;
+    }
+
     private User makeUser(UserDTO userDTO) {
           List<ShopAdd> ShopAddDTOList = new ArrayList<>();
 

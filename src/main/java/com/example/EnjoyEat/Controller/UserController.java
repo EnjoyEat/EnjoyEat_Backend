@@ -6,9 +6,7 @@ import com.example.EnjoyEat.Service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"유저정보 메서드에 관한 API"})
 @RestController
@@ -24,6 +22,16 @@ public class UserController {
             return ResponseEntity.ok("회원가입이 완료되었습니다.");
         } catch (Exception e) {
             return ResponseService.makeResponseEntity("회원가입에 실패했습니다.", e);
+        }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> findall() {
+        try {
+            userService.findAll();
+            return ResponseEntity.ok("유저목록입니다.");
+        } catch (Exception e) {
+            return ResponseService.makeResponseEntity("유저목록을 추출하는데 실패하였습니다.", e);
         }
     }
 }
