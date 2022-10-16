@@ -31,7 +31,7 @@ public class UserService {
 
         if (userDTO.getShopAddDTOList() != null) {
             for (Long shopAddId : userDTO.getShopAddDTOList()) {
-                ShopAddDTOList.add(shopRepository.getReferenceById(shopAddId));
+                ShopAddDTOList.add(shopRepository.getById(shopAddId));
             }
         }
 
