@@ -1,18 +1,17 @@
 package com.example.EnjoyEat.DTO;
 
 import com.example.EnjoyEat.Model.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.*;
-
-@Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Builder
-public class ShopDTO {
+@ToString
+public class ShopAddDTO {
+    private Long userId;
+
     private Long shopId;
     private String address;
     private String regionOne;
@@ -21,5 +20,4 @@ public class ShopDTO {
     private String longitude;
     private double rating;
     private String content;
-    private User user;
 }
