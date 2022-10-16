@@ -17,6 +17,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    // 임시 회원가입
     @PostMapping("/register")
     public ResponseEntity<?> signUp(@RequestBody UserDTO userDTO) {
         try {
@@ -26,12 +27,25 @@ public class UserController {
         }
     }
 
+    // 모든 회원을 보여주기
+    @ApiOperation(value = "모든회원을 보여주는 API")
     @GetMapping("/user")
     public ResponseEntity<?> findall() {
         try {
             return ResponseEntity.ok(userService.findAll());
         } catch (Exception e) {
             return ResponseService.makeResponseEntity("유저목록을 추출하는데 실패하였습니다.", e);
+        }
+    }
+
+    // 모든 회원을 보여주기
+    @ApiOperation(value = "특정회원을 보여주는 API")
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> findall(@ApiParam(value = "조회 할 유저의 PK") @PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(userService.findById(id));
+        } catch (Exception e) {
+            return ResponseService.makeResponseEntity("특정유저를 추출하는데 실패하였습니다.", e);
         }
     }
 

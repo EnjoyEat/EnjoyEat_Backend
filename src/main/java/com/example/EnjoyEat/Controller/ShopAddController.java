@@ -4,6 +4,7 @@ import com.example.EnjoyEat.DTO.ShopAddDTO;
 import com.example.EnjoyEat.Service.ResponseService;
 import com.example.EnjoyEat.Service.ShopAddService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class ShopAddController {
     @Autowired
     private ShopAddService shopAddService;
 
+    @ApiOperation(value = "각 회원의 맛집을 추가/삭제하는 API")
     @PostMapping("shop")
     public ResponseEntity<?> addShop(@RequestBody ShopAddDTO shopAddDTO) {
         try {

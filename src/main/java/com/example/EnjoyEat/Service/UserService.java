@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserService {
@@ -34,6 +33,12 @@ public class UserService {
             userDTOList.add(makeUserDTO(user));
         }
         return userDTOList;
+    }
+
+    public UserDTO findById(Long id) {
+        User user = userRepository.getById(id);
+        UserDTO userDTO = makeUserDTO(user);
+        return userDTO;
     }
 
     public UserDTO update(Long id, UserDTO userDTO) throws Exception {
