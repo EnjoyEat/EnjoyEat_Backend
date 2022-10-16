@@ -33,6 +33,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    @Lob
     @Column(nullable = false)
     private String intro;
 

@@ -20,9 +20,10 @@ public class ShopAddService {
     private UserRepository userRepository;
 
     public String addShop(ShopAddDTO shopAddDTO) {
-        User user = userRepository.getReferenceById(shopAddDTO.getUserId());
+        User user = userRepository.getById(shopAddDTO.getUserId());
 
-        ShopAdd shopAdd = shopRepository.findByUserAndShopId(user, shopAddDTO.getShopId());
+        ShopAdd shopAdd = shopRepository.findByUserAndNameAndAddress(user, shopAddDTO.getName(), shopAddDTO.getAddress());
+        System.out.println(shopAdd);
         if (shopAdd == null) {
             return add(user, shopAddDTO);
         }
@@ -32,6 +33,7 @@ public class ShopAddService {
     private String add(User user, ShopAddDTO shopAddDTO) {
         ShopAdd shopAdd = ShopAdd.builder()
                 .user(user)
+                .name(shopAddDTO.getName())
                 .shopId(shopAddDTO.getShopId())
                 .address(shopAddDTO.getAddress())
                 .regionOne(shopAddDTO.getRegionOne())

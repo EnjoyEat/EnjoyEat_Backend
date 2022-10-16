@@ -27,9 +27,7 @@ public class UserService {
     }
 
     private User makeUser(UserDTO userDTO) {
-        User user = userRepository.getReferenceById(userDTO.getUserId());
-
-        List<ShopAdd> ShopAddDTOList = new ArrayList<>();
+          List<ShopAdd> ShopAddDTOList = new ArrayList<>();
 
         if (userDTO.getShopAddDTOList() != null) {
             for (Long shopAddId : userDTO.getShopAddDTOList()) {
@@ -38,7 +36,6 @@ public class UserService {
         }
 
         return User.builder()
-                .userId(userDTO.getUserId())
                 .providerId(userDTO.getProviderId())
                 .username(userDTO.getUsername())
                 .email(userDTO.getEmail())
@@ -61,7 +58,6 @@ public class UserService {
 
         return UserDTO
                 .builder()
-                .userId(user.getUserId())
                 .providerId(user.getProviderId())
                 .username(user.getUsername())
                 .email(user.getEmail())
