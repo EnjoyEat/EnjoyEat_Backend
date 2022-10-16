@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -33,6 +34,19 @@ public class UserService {
             userDTOList.add(makeUserDTO(user));
         }
         return userDTOList;
+    }
+
+    public UserDTO update(Long id, UserDTO userDTO) throws Exception {
+        User user = userRepository.getById(id);
+
+        user.setProviderId(userDTO.getProviderId());
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setProfileImage(userDTO.getProfileImage());
+        user.setNickname(userDTO.getNickname());
+        user.setIntro(userDTO.getIntro());
+        user = userRepository.save(user);
+        return makeUserDTO(user);
     }
 
     private User makeUser(UserDTO userDTO) {
