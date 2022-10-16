@@ -25,5 +25,5 @@ public class UserDTO {
     private String nickname;
     private String intro;
 
-    private List<Long> ShopAddList;
+    private List<Long> ShopAddDTOList;
 }
