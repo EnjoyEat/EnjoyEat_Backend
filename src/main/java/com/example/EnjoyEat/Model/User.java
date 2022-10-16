@@ -3,6 +3,7 @@ package com.example.EnjoyEat.Model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,6 +33,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    @Lob
     @Column(nullable = false)
     private String intro;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ShopAdd> ShopAddList;
 }

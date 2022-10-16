@@ -10,10 +10,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Shop {
+@Table(name = "shop")
+public class ShopAdd {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shopId;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String address;
