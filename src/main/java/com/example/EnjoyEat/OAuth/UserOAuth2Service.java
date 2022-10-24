@@ -1,9 +1,12 @@
 package com.example.EnjoyEat.OAuth;
 
 import com.example.EnjoyEat.DTO.UserDTO;
+import com.example.EnjoyEat.Model.User;
+import com.example.EnjoyEat.Repository.UserRepository;
 import com.example.EnjoyEat.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -32,9 +35,11 @@ public class UserOAuth2Service extends DefaultOAuth2UserService {
 
     private final HttpSession httpSession;
 
-    UserDTO userDTO;
+    UserDTO userDTO = new UserDTO();
 
-    UserService userService;
+    private final UserService userService;
+
+    private final UserRepository userRepository;
 
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
@@ -95,36 +100,47 @@ public class UserOAuth2Service extends DefaultOAuth2UserService {
             }
         */
 
-        Map<String, Object> attributes = oAuth2User.getAttributes();
-//        String providerId = (String) attributes.get("id");
-        String providerId = String.valueOf(attributes.get("id")) ;
 
+        Map<String, Object> attributes = oAuth2User.getAttributes();
+        System.out.println(attributes);
+        String providerId = String.valueOf(attributes.get("id")) ;
         System.out.println(attributes);
 
+
+
         Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
-//        String email = (String) kakao_account.get("email");
+        System.out.println(attributes);
         String email = String.valueOf(kakao_account.get("email"));
+        System.out.println("email은 " + email);
 
 
         Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
-//        String username = (String) profile.get("nickname");
-//        String profileImage = (String) profile.get("profile_image_url");
+        System.out.println(profile);
         String username = String.valueOf(profile.get("nickname"));
+        System.out.println("username은 "+username);
         String profileImage = String.valueOf(profile.get("profile_image_url"));
+        System.out.println("프로필이미지는 "+profileImage);
 
         String nickname = username;
+        System.out.println("=임시 nickname은 "+nickname);
         String intro = "자기소개 적어주세요.";
+        System.out.println("임시 intro는 "+intro);
+
+        User kakaoUser = userRepository.findByEmail(email).orElse(null);
 
 
-        if (userDTO.getEmail() == email) {
-            System.out.println("가입한적 있음.");
-        } else {
-            userDTO.setEmail(email);
-            userDTO.setIntro(intro);
+        if (kakaoUser == null) {
+            userDTO.setProfileImage(profileImage);
             userDTO.setNickname(nickname);
             userDTO.setProviderId(providerId);
-            userDTO.setProfileImage(profileImage);
+            userDTO.setIntro(intro);
+            userDTO.setEmail(email);
+            userDTO.setUsername(username);
+            System.out.println(userDTO);
             userService.signUp(userDTO);
+            System.out.println("카카오로 가입~");
+        } else {
+            System.out.println("가입한적 있음.");
         }
 
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority("ROLE_MEMBER")), attributes, "id");
