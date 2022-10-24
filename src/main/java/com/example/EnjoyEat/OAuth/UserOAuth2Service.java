@@ -4,7 +4,6 @@ import com.example.EnjoyEat.DTO.UserDTO;
 import com.example.EnjoyEat.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -97,16 +96,21 @@ public class UserOAuth2Service extends DefaultOAuth2UserService {
         */
 
         Map<String, Object> attributes = oAuth2User.getAttributes();
-        String providerId = (String) attributes.get("id");
+//        String providerId = (String) attributes.get("id");
+        String providerId = String.valueOf(attributes.get("id")) ;
 
         System.out.println(attributes);
 
         Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
-        String email = (String) kakao_account.get("email");
+//        String email = (String) kakao_account.get("email");
+        String email = String.valueOf(kakao_account.get("email"));
+
 
         Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
-        String username = (String) profile.get("nickname");
-        String profileImage = (String) profile.get("profile_image_url");
+//        String username = (String) profile.get("nickname");
+//        String profileImage = (String) profile.get("profile_image_url");
+        String username = String.valueOf(profile.get("nickname"));
+        String profileImage = String.valueOf(profile.get("profile_image_url"));
 
         String nickname = username;
         String intro = "자기소개 적어주세요.";
