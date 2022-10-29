@@ -16,11 +16,18 @@ spring:
 
   #   swagger UI : http://localhost:8080/swagger-ui/
 
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3307/enjoyeat?serverTimezone=Asia/Seoul
+#    username: cos
+#    password: cos1234
+
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3307/enjoyeat?serverTimezone=Asia/Seoul
-    username: cos
-    password: cos1234
+    url: jdbc:mariadb://database-1.c53hoop8qhxk.ap-northeast-2.rds.amazonaws.com:3306/enjoyeat?serverTimezone=Asia/Seoul
+    username: enjoyeat
+    password: dlswhdldlt
+
   #   swagger UI : http://localhost:8080/swagger-ui/
   jpa:
     open-in-view: true
