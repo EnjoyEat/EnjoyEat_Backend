@@ -15,10 +15,12 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
+@Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
@@ -70,7 +72,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         user.setEmail(oAuth2UserInfo.getEmail());
         user.setNickname(oAuth2UserInfo.getName());
         user.setProfileImage(oAuth2UserInfo.getImageUrl());
-        user.setRole(Role.valueOf("ROLE_USER")); // 추가
         user.setIntro("소개말을 적어주세요!");
         return userRepository.save(user);
     }

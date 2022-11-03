@@ -8,4 +8,5 @@ public class EnjoyEatApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EnjoyEatApplication.class, args);
 	}
+
 }

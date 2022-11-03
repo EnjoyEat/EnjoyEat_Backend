@@ -1,5 +1,6 @@
 package com.example.EnjoyEat.Security;
 
+import com.example.EnjoyEat.Model.Role;
 import com.example.EnjoyEat.Model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,7 +31,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
 
     public static UserPrincipal create(User user) {
         List<GrantedAuthority> authorities = Collections.
-                singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+                singletonList(new SimpleGrantedAuthority("" + Role.CLIENT));
 
         return new UserPrincipal(
                 user.getUserId(),
@@ -38,6 +39,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
                 user.getPassword(),
                 authorities
         );
+
     }
 
     public static UserPrincipal create(User user, Map<String, Object> attributes) {

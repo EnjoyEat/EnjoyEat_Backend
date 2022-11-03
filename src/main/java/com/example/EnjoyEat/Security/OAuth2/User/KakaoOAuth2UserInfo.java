@@ -4,27 +4,34 @@ import java.util.Map;
 
 public class KakaoOAuth2UserInfo extends OAuth2UserInfo {
 
+    private Map<String, Object> attributes;
+    private Map<String, Object> attributesAccount;
+    private Map<String, Object> attributesProfile;
+
     public KakaoOAuth2UserInfo(Map<String, Object> attributes) {
-        super((Map<String, Object>) attributes.get("kakao_account"));
+        super(attributes);
+        this.attributes = attributes;
+        this.attributesAccount = (Map<String, Object>) attributes.get("kakao_account");
+        this.attributesProfile = (Map<String, Object>) attributesAccount.get("profile");
     }
 
     @Override
     public String getId() {
-        return String.valueOf(attributes.get("id"));
+        return attributes.get("id").toString();
     }
 
     @Override
     public String getName() {
-        return (String) ((Map<String, Object>) attributes.get("profile")).get("nickname");
+        return (String) attributesProfile.get("nickname");
     }
 
     @Override
     public String getEmail() {
-        return (String) attributes.get("email");
+        return (String) attributesAccount.get("email");
     }
 
     @Override
     public String getImageUrl() {
-        return (String) ((Map<String, Object>) attributes.get("profile")).get("thumbnail_image_url");
+        return (String) attributesProfile.get("thumbnail_image_url");
     }
 }

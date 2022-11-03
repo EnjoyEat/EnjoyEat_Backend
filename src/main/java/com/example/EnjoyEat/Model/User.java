@@ -22,17 +22,14 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
     @Column(nullable = false)
-    private Boolean emailVerified = false;
+    private String email;
 
     @JsonIgnore
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
 
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;

@@ -14,7 +14,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry
                 .addMapping("/**")
-                .allowedOrigins("*") // 외부에서 들어오는 모든 url을 허용
+                // .allowedOrigins("*") // 외부에서 들어오는 모든 url을 허용
+                .allowedOriginPatterns("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // 허용되는 Method
                 .allowedHeaders("*") // 허용되는 헤더
                 .allowCredentials(true) // 자격증명 허용
