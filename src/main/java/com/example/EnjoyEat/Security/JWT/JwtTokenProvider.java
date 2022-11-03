@@ -1,6 +1,6 @@
 package com.example.EnjoyEat.Security.JWT;
 
-import com.example.EnjoyEat.Security.OAuth2.UserPrincipal;
+import com.example.EnjoyEat.Security.UserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

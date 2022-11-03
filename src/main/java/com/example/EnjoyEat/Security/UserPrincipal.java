@@ -1,4 +1,4 @@
-package com.example.EnjoyEat.Security.OAuth2;
+package com.example.EnjoyEat.Security;
 
 import com.example.EnjoyEat.Model.User;
 import org.springframework.security.core.GrantedAuthority;
