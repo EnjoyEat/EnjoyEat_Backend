@@ -1,6 +1,6 @@
 package com.example.EnjoyEat.Config;
 
-import com.example.EnjoyEat.OAuth.UserOAuth2Service;
+import com.example.EnjoyEat.Security.OAuth2.UserOAuth2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

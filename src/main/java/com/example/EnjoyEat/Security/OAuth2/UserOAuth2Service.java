@@ -1,4 +1,4 @@
-package com.example.EnjoyEat.OAuth;
+package com.example.EnjoyEat.Security.OAuth2;
 
 import com.example.EnjoyEat.DTO.UserDTO;
 import com.example.EnjoyEat.Model.User;
@@ -6,7 +6,6 @@ import com.example.EnjoyEat.Repository.UserRepository;
 import com.example.EnjoyEat.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

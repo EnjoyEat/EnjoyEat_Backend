@@ -1,5 +1,6 @@
 package com.example.EnjoyEat.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,14 +19,26 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "provider_id", unique = true)
-    private String providerId;
-
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private Boolean emailVerified = false;
+
+    @JsonIgnore
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    @Column(name = "provider_id", unique = true)
+    private String providerId;
 
     @Column(name = "profile_image", unique = true)
     private String profileImage;
